@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube RAG</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            width: 600px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2a5298;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background-color: #2a5298;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #1e3c72;
+        }
+
+        .answer-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f4f6f9;
+            border-left: 5px solid #2a5298;
+            border-radius: 6px;
+        }
+
+        hr {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>YouTube RAG System</h1>
+        <h1>{% if message %}
+<div style="padding:10px; background:#d4edda; color:#155724; border-radius:6px; margin-bottom:15px;">
+    {{ message }}
+</div>
+{% endif %}
+</h1>
+        <h3>Build RAG</h3>
+        <form action="/build" method="post">
+            <input type="text" name="video_id" placeholder="Enter YouTube Video ID" required>
+            <button type="submit">Build</button>
+        </form>
+
+        <hr>
+
+        <h3>Ask Question</h3>
+        <form action="/ask" method="post">
+            <input type="text" name="question" placeholder="Ask something..." required>
+            <button type="submit">Ask</button>
+        </form>
+
+        {% if answer %}
+        <div class="answer-box">
+            <h3>Answer:</h3>
+            <p>{{ answer }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
